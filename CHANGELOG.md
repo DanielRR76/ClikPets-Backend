@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/DanielRR76/ClikPets-Backend/compare/v2.0.0...v2.1.0) (2026-09-30)
+
+
+### Features
+
+* add Swagger UI integration for API documentation ([108c61e](https://github.com/DanielRR76/ClikPets-Backend/commit/108c61e139538992a4eda28c70422f4c954fc951))
+* change url property to private in File class for encapsulation ([cce14c4](https://github.com/DanielRR76/ClikPets-Backend/commit/cce14c4c0c62356ca9a32bb32e54932b58bf84a4))
+* enhance checkUser and logout methods with error handling and response structure ([a505ced](https://github.com/DanielRR76/ClikPets-Backend/commit/a505cedbea23900a24e938bab7c5f48c7c39dfbd))
+* enhance PetResponseDTO and PetService to include owner information in pet responses ([8b22645](https://github.com/DanielRR76/ClikPets-Backend/commit/8b2264545d907f0a587ea6c7808c2a68fd626da1))
+* enhance updatePet method to check for file uploads before processing images ([c3cde8e](https://github.com/DanielRR76/ClikPets-Backend/commit/c3cde8ebc0ca2b300798397064cfe02ee12d945d))
+* enhance user edit functionality with email conflict check and token generation ([29d70f6](https://github.com/DanielRR76/ClikPets-Backend/commit/29d70f6025efdf6d5ad70fb6d0de6f41df599806))
+* enhance user registration and login responses with structured payload ([6ea551f](https://github.com/DanielRR76/ClikPets-Backend/commit/6ea551ff323fe16535ce55bb19cb6ae54ded831e))
+* implement cookie-based token handling for user authentication ([8b9d2be](https://github.com/DanielRR76/ClikPets-Backend/commit/8b9d2be316cfa154c10abb6b2f4eb8a15c52cae4))
+* standardize response structure in pet-related endpoints ([e4614a1](https://github.com/DanielRR76/ClikPets-Backend/commit/e4614a152c10791dc7aa7a54ad7b3ca306779a4e))
+* update age validation in PetAge class to allow ages up to 50 ([a6d26e3](https://github.com/DanielRR76/ClikPets-Backend/commit/a6d26e3e31069df922a5e091605aa1e6fba2591b))
+* update PrismaClient import path and add path mapping for generated client ([f2cd737](https://github.com/DanielRR76/ClikPets-Backend/commit/f2cd7378f61dbae4136fada79fc08411be238267))
+
+
+### Bug Fixes
+
+* update response structure in getUserById method to use 'payload' key ([89d9aaf](https://github.com/DanielRR76/ClikPets-Backend/commit/89d9aaf8130fd3bda5330d18f9de2392d18629dc))
+
 ## 2.0.0 (2026-09-30)
 
 
