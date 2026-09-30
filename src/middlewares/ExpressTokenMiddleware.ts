@@ -10,9 +10,7 @@ export class ExpressTokenMiddleware {
     }
 
     getToken(req: Request) {
-        const authHeader = req.headers.authorization;
-        const token = authHeader && authHeader.split(' ')[1];
-        return token;
+        return req.cookies.accessToken;
     }
 
     verifyToken(req: Request, res: Response, next: NextFunction) {
