@@ -6,8 +6,8 @@ export class PetAge {
         if (value < 0) {
             throw new PetAgeError('Age cannot be negative');
         }
-        if (value > 20) {
-            throw new PetAgeError('Age cannot be greater than 20');
+        if (value > 50) {
+            throw new PetAgeError('Age cannot be greater than 50');
         }
         this.value = value;
     }
