@@ -120,9 +120,10 @@ export default class PetController {
     async updatePet(req: Request<{ id: string }, object, PetUpdateRequest>, res: Response) {
         try {
             const id = parseInt(req.params.id as string);
-            const images = Array.isArray(req.files)
-                ? req.files.map((file: ImageFile) => new FileDTO(file.originalname, 'pets', file.buffer))
-                : undefined;
+            const images =
+                Array.isArray(req.files) && req.files.length > 0
+                    ? req.files.map((file: ImageFile) => new FileDTO(file.originalname, 'pets', file.buffer))
+                    : undefined;
             const dto = new PetUpdateRequestDTO(req.body.name, req.body.age, req.body.weight, req.body.color, images);
             const response = await this.service.updatePet(id, dto, req.authUser!);
             res.status(response.statusCode).json({ message: response.message });
