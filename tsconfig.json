@@ -15,7 +15,6 @@
         "moduleResolution": "bundler",
         "noImplicitAny": false,
         "removeComments": true,
-        "baseUrl": ".",
         "sourceMap": true,
         "outDir": "./dist",
         "rootDir": "./",
@@ -39,7 +38,8 @@
             "@routes/*": ["./src/routes/*"],
             "@server/*": ["./src/server/*"],
             "@services/*": ["./src/services/*"],
-            "@customTypes/*": ["./src/types/*"]
+            "@customTypes/*": ["./src/types/*"],
+            "@generated": ["./generated/prisma/client.ts"]
         }
     },
     "exclude": ["node_modules", "generated"]
