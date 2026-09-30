@@ -1,5 +1,6 @@
 import { MediaService } from '@contracts/MediaService';
 import { PetRepository } from '@contracts/PetRepository';
+import { UserRepository } from '@contracts/UserRepository';
 import { AuthUser } from '@customTypes/AuthUser';
 import { File } from '@domain/File';
 import { HttpResponse } from '@domain/HttpResponse';
@@ -14,9 +15,11 @@ import { PetError } from '@errors/PetError';
 export class PetService {
     private petRepository: PetRepository;
     private mediaService: MediaService;
-    constructor(petRepository: PetRepository, mediaService: MediaService) {
+    private userRepository: UserRepository;
+    constructor(petRepository: PetRepository, mediaService: MediaService, userRepository: UserRepository) {
         this.petRepository = petRepository;
         this.mediaService = mediaService;
+        this.userRepository = userRepository;
     }
 
     async create(dto: PetCreateRequestDTO, authUser: AuthUser) {
@@ -61,9 +64,11 @@ export class PetService {
 
     async getAllUserAdoptions(authUser: AuthUser) {
         const userAdoptions = await this.petRepository.findAllByAdopterId(authUser.id);
-        const payload = userAdoptions?.map((pet) => {
-            return new PetResponseDTO(pet);
-        });
+        const ownerIds = [...new Set((userAdoptions ?? []).map((pet) => pet.getOwnerId()))];
+        const owners = await Promise.all(ownerIds.map((id) => this.userRepository.findById(id)));
+        const ownersById = new Map(owners.filter((owner) => owner !== undefined).map((owner) => [owner.getId(), owner]));
+
+        const payload = userAdoptions?.map((pet) => new PetResponseDTO(pet, ownersById.get(pet.getOwnerId())));
         return new HttpResponse(HttpStatusCode.OK, 'User adoptions retrieved successfully', payload);
     }
     async getPetById(id: number) {
@@ -71,7 +76,8 @@ export class PetService {
         if (!pet) {
             throw new PetError('Pet not found', HttpStatusCode.NOT_FOUND);
         }
-        const payload = new PetResponseDTO(pet);
+        const owner = await this.userRepository.findById(pet.getOwnerId());
+        const payload = new PetResponseDTO(pet, owner);
         return new HttpResponse(HttpStatusCode.OK, 'Pet retrieved successfully', payload);
     }
 
