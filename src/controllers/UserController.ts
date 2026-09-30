@@ -92,7 +92,7 @@ export default class UserController {
         try {
             const id = parseInt(req.params.id as string);
             const response = await this.service.getUserById(id);
-            res.status(response.statusCode).json({ message: response.message, user: response.payload });
+            res.status(response.statusCode).json({ message: response.message, payload: response.payload });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
