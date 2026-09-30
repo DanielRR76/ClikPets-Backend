@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/DanielRR76/ClikPets-Backend/compare/v2.1.1...v2.1.2) (2026-09-30)
+
+
+### Bug Fixes
+
+* remove swagger-ui-express and related dependencies and add swagger page in index.html ([900a84e](https://github.com/DanielRR76/ClikPets-Backend/commit/900a84eb82b9f5c27563c310c7f04ef6935dd9cd))
+
 ### [2.1.1](https://github.com/DanielRR76/ClikPets-Backend/compare/v2.1.0...v2.1.1) (2026-09-30)
 
 
