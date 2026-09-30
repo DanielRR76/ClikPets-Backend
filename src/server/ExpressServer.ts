@@ -1,5 +1,6 @@
 import express, { Response, Request } from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { HttpServer } from '@contracts/HttpServer';
 import 'dotenv/config';
 import { Router } from '@contracts/Router';
@@ -11,6 +12,7 @@ export class ExpressServer implements HttpServer {
         this.app = express();
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(cookieParser());
         this.app.use(cors({ credentials: true, origin: process.env.CORS_ORIGIN }));
         this.app.use(express.static('public'));
     }
