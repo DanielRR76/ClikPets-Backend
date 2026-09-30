@@ -134,7 +134,7 @@ Routes are grouped under `/users` and `/pets`:
 | Users | `POST /users/register`, `POST /users/login`, `POST /users/logout`, `GET /users/checkuser`, `GET /users/:id`, `PATCH /users/edit`                                                                                  | Registration, login, and lookup by ID are public; logout, session lookup, and profile editing require authentication. |
 | Pets  | `GET /pets`, `GET /pets/colors`, `GET /pets/:id`, `POST /pets/create`, `GET /pets/mypets`, `GET /pets/myadoptions`, `PATCH /pets/:id`, `DELETE /pets/:id`, `PATCH /pets/schedule/:id`, `PATCH /pets/complete/:id` | Listing, colors, and lookup by ID are public; all other operations require authentication.                            |
 
-Registration and login set the `accessToken` cookie. Authenticated routes expect this cookie, which contains a JWT with a one-hour lifetime and is configured as `HttpOnly`, `Secure`, and `SameSite=Lax`. Since the cookie is used for authentication, web clients on another origin must send requests with credentials; set `CORS_ORIGIN` to the client's origin.
+Registration and login set the `accessToken` cookie. Authenticated routes expect this cookie, which contains a JWT with a one-hour lifetime and is configured as `HttpOnly`, `Secure`, and `SameSite=none`. Since the cookie is used for authentication, web clients on another origin must send requests with credentials; set `CORS_ORIGIN` to the client's origin.
 
 Pet creation accepts 1 to 5 files in the `images` field; pet updates accept up to 5 images. User profile editing accepts one image in the `image` field. Images are uploaded to Cloudinary.
 

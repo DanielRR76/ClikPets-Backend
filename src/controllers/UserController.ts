@@ -26,7 +26,7 @@ export default class UserController {
             res.cookie('accessToken', response.payload.token, {
                 httpOnly: true,
                 secure: true,
-                sameSite: 'lax',
+                sameSite: 'none',
             });
             res.status(response.statusCode).json({ message: response.message, payload: response.payload.user });
         } catch (error: any) {
@@ -47,7 +47,7 @@ export default class UserController {
             res.cookie('accessToken', response.payload.token, {
                 httpOnly: true,
                 secure: true,
-                sameSite: 'lax',
+                sameSite: 'none',
             });
             res.status(response.statusCode).json({ message: response.message, payload: response.payload.user });
         } catch (error: any) {
@@ -117,7 +117,7 @@ export default class UserController {
             res.cookie('accessToken', response.payload.token, {
                 httpOnly: true,
                 secure: true,
-                sameSite: 'lax',
+                sameSite: 'none',
             });
             res.status(response.statusCode).json({ message: response.message, payload: response.payload.user });
         } catch (error: any) {

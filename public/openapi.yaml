@@ -405,10 +405,10 @@ components:
                 minimum: 1
     headers:
         AccessTokenCookie:
-            description: Cookie de autenticação HttpOnly, Secure e SameSite=Lax. / HttpOnly, Secure, SameSite=Lax authentication cookie.
+            description: Cookie de autenticação HttpOnly, Secure e SameSite=none. / HttpOnly, Secure, SameSite=none authentication cookie.
             schema:
                 type: string
-                example: accessToken=<token>; Path=/; HttpOnly; Secure; SameSite=Lax
+                example: accessToken=<token>; Path=/; HttpOnly; Secure; SameSite=none
     responses:
         BadRequest:
             description: Requisição inválida ou dados fora do formato aceito / Invalid request or data outside accepted format

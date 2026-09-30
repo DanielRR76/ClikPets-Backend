@@ -134,7 +134,7 @@ As rotas são agrupadas sob `/users` e `/pets`:
 | Usuários | `POST /users/register`, `POST /users/login`, `POST /users/logout`, `GET /users/checkuser`, `GET /users/:id`, `PATCH /users/edit`                                                                                  | Cadastro, login e consulta pública por ID; logout, sessão e edição autenticados.   |
 | Pets     | `GET /pets`, `GET /pets/colors`, `GET /pets/:id`, `POST /pets/create`, `GET /pets/mypets`, `GET /pets/myadoptions`, `PATCH /pets/:id`, `DELETE /pets/:id`, `PATCH /pets/schedule/:id`, `PATCH /pets/complete/:id` | Consulta pública para listagem, cores e pet por ID; demais operações autenticadas. |
 
-Cadastro e login definem o cookie `accessToken`. As rotas autenticadas esperam esse cookie, que contém um JWT com validade de uma hora e é configurado como `HttpOnly`, `Secure` e `SameSite=Lax`. Como o cookie é usado para autenticação, clientes web em outra origem devem enviar requisições com credenciais; configure `CORS_ORIGIN` para a origem do cliente.
+Cadastro e login definem o cookie `accessToken`. As rotas autenticadas esperam esse cookie, que contém um JWT com validade de uma hora e é configurado como `HttpOnly`, `Secure` e `SameSite=none`. Como o cookie é usado para autenticação, clientes web em outra origem devem enviar requisições com credenciais; configure `CORS_ORIGIN` para a origem do cliente.
 
 Criação de pets aceita de 1 a 5 arquivos no campo `images`; a atualização de pets aceita até 5 imagens. A edição de usuário aceita uma imagem no campo `image`. As imagens são carregadas no Cloudinary.
 
