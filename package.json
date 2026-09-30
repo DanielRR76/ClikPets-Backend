@@ -17,7 +17,10 @@
         "lint": "eslint \"src/**/*.ts\" --fix",
         "compose:up": "docker-compose up --build",
         "compose:down": "docker-compose down",
-        "prepare": "husky"
+        "prepare": "husky",
+        "release:patch": "standard-version --release-as patch",
+        "release:minor": "standard-version --release-as minor",
+        "release:major": "standard-version --release-as major"
     },
     "keywords": [],
     "author": "",
@@ -57,6 +60,7 @@
         "globals": "^17.3.0",
         "prettier": "3.8.1",
         "prisma": "^7.4.1",
+        "standard-version": "^9.5.0",
         "tsup": "^8.5.1",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.56.1"
