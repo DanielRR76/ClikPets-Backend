@@ -12,6 +12,7 @@ import { DatabaseError } from '@errors/DatabaseError';
 import { EmailError } from '@errors/EmailError';
 import { AuthUser } from '@customTypes/AuthUser';
 import { HttpStatusCode } from '@enums/HttpStatusCode';
+import { Email } from '@domain/Email';
 
 export class UserService {
     private jwtService: JsonWebToken;
@@ -78,6 +79,10 @@ export class UserService {
         if (!user) {
             throw new EmailError('User not found', HttpStatusCode.NOT_FOUND);
         }
+        const existingUser = await this.userRepository.findByEmail(new Email(dto.email?.getValue() || ''));
+        if (existingUser && user?.getEmail().getValue() !== existingUser.getEmail().getValue()) {
+            throw new EmailError('Email already in use', HttpStatusCode.CONFLICT);
+        }
         let imageUrl: File | undefined;
         if (dto.image) {
             imageUrl = (await this.mediaService.upload(dto.image)) as File;
@@ -86,7 +91,15 @@ export class UserService {
         user.update(dto, imageUrl);
         try {
             await this.userRepository.update(user);
-            return new HttpResponse(HttpStatusCode.OK, 'User updated successfully');
+            const token = this.jwtService.sign(user);
+            const payload = new UserResponseDTO(
+                user.getName(),
+                user.getEmail().getValue(),
+                user.getPhone().getValue(),
+                user.getImage()?.getUrl(),
+                user.getId(),
+            );
+            return new HttpResponse(HttpStatusCode.OK, 'User updated successfully', { token, user: payload });
         } catch (error: any) {
             if (imageUrl) {
                 try {

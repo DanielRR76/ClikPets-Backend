@@ -100,7 +100,12 @@ export default class UserController {
                 req.file,
             );
             const response = await this.service.editUser(req.authUser!, dto);
-            res.status(response.statusCode).json({ message: response.message, user: response.payload });
+            res.cookie('accessToken', response.payload.token, {
+                httpOnly: true,
+                secure: true,
+                sameSite: 'lax',
+            });
+            res.status(response.statusCode).json({ message: response.message, payload: response.payload.user });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
