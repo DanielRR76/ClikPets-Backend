@@ -5,6 +5,7 @@ import { HttpServer } from '@contracts/HttpServer';
 import 'dotenv/config';
 import { Router } from '@contracts/Router';
 import { HttpMethod } from '@enums/HttpMethod';
+import swaggerUi from 'swagger-ui-express';
 
 export class ExpressServer implements HttpServer {
     private app: express.Express;
@@ -15,6 +16,15 @@ export class ExpressServer implements HttpServer {
         this.app.use(cookieParser());
         this.app.use(cors({ credentials: true, origin: process.env.CORS_ORIGIN }));
         this.app.use(express.static('public'));
+        this.app.use(
+            '/docs',
+            swaggerUi.serve,
+            swaggerUi.setup(undefined, {
+                swaggerOptions: {
+                    url: '/openapi.yaml',
+                },
+            }),
+        );
     }
     routes(path: string, router: Router): void {
         const expressRouter = express.Router();
