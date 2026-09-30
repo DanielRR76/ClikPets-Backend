@@ -33,7 +33,14 @@ export class UserService {
         await this.userRepository.create(user);
         const createdUser = await this.userRepository.findByEmail(dto.email);
         const token = this.jwtService.sign(createdUser!);
-        return new HttpResponse(HttpStatusCode.CREATED, 'User registered successfully', token);
+        const payload = new UserResponseDTO(
+            user.getName(),
+            user.getEmail().getValue(),
+            user.getPhone().getValue(),
+            user.getImage()?.getUrl(),
+            user.getId(),
+        );
+        return new HttpResponse(HttpStatusCode.CREATED, 'User registered successfully', { user: payload, token });
     }
 
     async login(dto: LoginRequestDTO) {
@@ -43,7 +50,14 @@ export class UserService {
         }
         await user.getPassword().compare(dto.password.getValue());
         const token = this.jwtService.sign(user);
-        return new HttpResponse(HttpStatusCode.OK, 'Login successful', token);
+        const payload = new UserResponseDTO(
+            user.getName(),
+            user.getEmail().getValue(),
+            user.getPhone().getValue(),
+            user.getImage()?.getUrl(),
+            user.getId(),
+        );
+        return new HttpResponse(HttpStatusCode.OK, 'Login successful', { user: payload, token });
     }
 
     async checkUser(authUser: AuthUser) {
@@ -71,6 +85,7 @@ export class UserService {
             user.getEmail().getValue(),
             user.getPhone().getValue(),
             user.getImage()?.getUrl(),
+            user.getId(),
         );
         return new HttpResponse(HttpStatusCode.OK, 'User retrieved successfully', payload);
     }
