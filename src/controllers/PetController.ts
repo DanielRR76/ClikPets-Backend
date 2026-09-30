@@ -30,7 +30,7 @@ export default class PetController {
                 : undefined;
             const dto = new PetCreateRequestDTO(req.body?.name, req.body?.age, req.body?.weight, req.body?.color, images);
             const response = await this.service.create(dto, req.authUser!);
-            res.status(response.statusCode).json({ message: response.message, pet: response.payload });
+            res.status(response.statusCode).json({ message: response.message, payload: response.payload });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
@@ -44,7 +44,7 @@ export default class PetController {
     async getAll(_: Request, res: Response) {
         try {
             const response = await this.service.getAll();
-            res.status(response.statusCode).json({ message: response.message, pets: response.payload });
+            res.status(response.statusCode).json({ message: response.message, payload: response.payload });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
@@ -62,7 +62,7 @@ export default class PetController {
     async getAllUserPets(req: Request, res: Response) {
         try {
             const response = await this.service.getAllUserPets(req.authUser!);
-            res.status(response.statusCode).json({ message: response.message, pets: response.payload });
+            res.status(response.statusCode).json({ message: response.message, payload: response.payload });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
@@ -76,7 +76,7 @@ export default class PetController {
     async getAllUserAdoptions(req: Request, res: Response) {
         try {
             const response = await this.service.getAllUserAdoptions(req.authUser!);
-            res.status(response.statusCode).json({ message: response.message, pets: response.payload });
+            res.status(response.statusCode).json({ message: response.message, payload: response.payload });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
@@ -91,7 +91,7 @@ export default class PetController {
         try {
             const id = parseInt(req.params.id as string);
             const response = await this.service.getPetById(id);
-            res.status(response.statusCode).json({ message: response.message, pet: response.payload });
+            res.status(response.statusCode).json({ message: response.message, payload: response.payload });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
@@ -106,7 +106,7 @@ export default class PetController {
         try {
             const id = parseInt(req.params.id as string);
             const response = await this.service.deletePetById(id, req.authUser!);
-            res.status(response.statusCode).json({ message: response.message, pet: response.payload });
+            res.status(response.statusCode).json({ message: response.message });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
@@ -125,7 +125,7 @@ export default class PetController {
                 : undefined;
             const dto = new PetUpdateRequestDTO(req.body.name, req.body.age, req.body.weight, req.body.color, images);
             const response = await this.service.updatePet(id, dto, req.authUser!);
-            res.status(response.statusCode).json({ message: response.message, pet: response.payload });
+            res.status(response.statusCode).json({ message: response.message });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
@@ -140,7 +140,7 @@ export default class PetController {
         try {
             const id = parseInt(req.params.id as string);
             const response = await this.service.scheduleAdoption(id, req.authUser!);
-            res.status(response.statusCode).json({ message: response.message, pet: response.payload });
+            res.status(response.statusCode).json({ message: response.message });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
@@ -155,7 +155,7 @@ export default class PetController {
         try {
             const id = parseInt(req.params.id as string);
             const response = await this.service.completeAdoption(id, req.authUser!);
-            res.status(response.statusCode).json({ message: response.message, pet: response.payload });
+            res.status(response.statusCode).json({ message: response.message });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
