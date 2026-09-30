@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-    title: Get a Pet API
+    title: ClikPet API
     version: 1.0.0
     description: >-
         API para cadastro e adoção de pets. / API for pet registration and adoption.
