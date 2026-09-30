@@ -56,6 +56,7 @@ export class UserService {
             user.getEmail().getValue(),
             user.getPhone().getValue(),
             user.getImage()?.getUrl(),
+            user.getId(),
         );
         return new HttpResponse(HttpStatusCode.OK, 'User authenticated successfully', payload);
     }

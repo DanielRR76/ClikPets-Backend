@@ -63,7 +63,21 @@ export default class UserController {
     async checkUser(req: Request, res: Response) {
         try {
             const response = await this.service.checkUser(req.authUser!);
-            res.status(response.statusCode).json({ message: response.message, user: response.payload });
+            res.status(response.statusCode).json({ message: response.message, payload: response.payload });
+        } catch (error: any) {
+            if (error instanceof HttpError) {
+                res.status(error.statusCode).json({ message: error.message });
+            } else {
+                console.error('Unexpected error:', error.message);
+                res.status(500).json({ message: 'Internal server error' });
+            }
+        }
+    }
+
+    async logout(_: Request, res: Response) {
+        try {
+            res.clearCookie('accessToken');
+            res.status(200).json({ message: 'Logged out successfully' });
         } catch (error: any) {
             if (error instanceof HttpError) {
                 res.status(error.statusCode).json({ message: error.message });
