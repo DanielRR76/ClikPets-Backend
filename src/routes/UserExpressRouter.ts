@@ -26,6 +26,12 @@ export class UserExpressRouter extends Router {
             handler: this.controller.login,
         });
         this.addRoute({
+            method: HttpMethod.POST,
+            path: '/logout',
+            middleware: [this.expressTokenMiddleware.verifyToken],
+            handler: this.controller.logout,
+        });
+        this.addRoute({
             method: HttpMethod.GET,
             path: '/checkuser',
             middleware: [this.expressTokenMiddleware.verifyToken],
