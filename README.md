@@ -1,4 +1,4 @@
-# ClikPet — API Backend
+# ClikPets — API Backend
 
 [English version](README.en.md)
 
