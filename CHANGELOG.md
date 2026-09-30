@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/DanielRR76/ClikPets-Backend/compare/v2.1.0...v2.1.1) (2026-09-30)
+
+
+### Bug Fixes
+
+* correct API name from ClikPet to ClikPets in README and OpenAPI documentation ([3accd74](https://github.com/DanielRR76/ClikPets-Backend/commit/3accd74f4b084e04be4ae873d8e38fa708059210))
+
 ## [2.1.0](https://github.com/DanielRR76/ClikPets-Backend/compare/v2.0.0...v2.1.0) (2026-09-30)
 
 
