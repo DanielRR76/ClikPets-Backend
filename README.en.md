@@ -1,4 +1,4 @@
-# ClikPet — Backend API
+# ClikPets — Backend API
 
 [Versão em português](README.md)
 
