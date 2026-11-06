@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/DanielRR76/ClikPets-Backend/compare/v2.1.2...v2.1.3) (2026-11-06)
+
+
+### Bug Fixes
+
+* update SameSite attribute for accessToken cookie to 'none' for cross-origin requests ([06ab19f](https://github.com/DanielRR76/ClikPets-Backend/commit/06ab19f49a729b5202dd36e2ce3ab0393a0719a8))
+
 ### [2.1.2](https://github.com/DanielRR76/ClikPets-Backend/compare/v2.1.1...v2.1.2) (2026-09-30)
 
 
